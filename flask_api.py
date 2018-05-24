@@ -1,7 +1,7 @@
 import redis
 from flask import Flask, jsonify, request
 
-from test_panda import main_model, dummy_set
+from test_panda import main_model, dummy_set,malwareinfo
 
 app = Flask(__name__)
 redis_db = redis.StrictRedis(host="localhost", port=6379, db=0)
@@ -40,3 +40,4 @@ def geturlinfo():
 if __name__ == "__main__":
 
         app.run(debug=True, use_reloader=False)
+        malwareinfo()

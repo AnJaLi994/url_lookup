@@ -51,10 +51,10 @@ class fExtractor(object):
         except:
             self.dns=False
             pass
-    def isAbnormalUrls(self):
-         '''
+    def isAbnormalUrl(self):
+        '''
         determines whether website has some dns value or not
-         '''
+        '''
 
         if self.dns:
             return 1
@@ -64,7 +64,7 @@ class fExtractor(object):
     def hasManyRedirects(self):
         '''
         determines whether website is redirecting to other urls
-         '''
+        '''
 
         r = self.response
         try:
@@ -77,7 +77,7 @@ class fExtractor(object):
     def isStandardPort(self):
         '''
         determines whether port is in whitelist list
-         '''
+        '''
 
         whitelist =[21,22,23,80,443,445,1433,1521,3306,3389]
         try:
@@ -91,7 +91,7 @@ class fExtractor(object):
     def hasHttpsToken(self):
         '''
         determines whether domain has http in it
-         '''
+        '''
 
         hostname = urlparse.urlparse(self.url).hostname
         if 'http' in hostname:
@@ -102,7 +102,7 @@ class fExtractor(object):
         '''
         determines whether  tokenwords has any numeric value
 
-         '''
+        '''
 
 
         cnt=0
@@ -116,7 +116,7 @@ class fExtractor(object):
     def isRedirectingUrl(self):
         '''
         determines whether url has more than one" //"
-         '''
+        '''
 
         if self.url.count('//')>1:
             return 1
@@ -124,7 +124,7 @@ class fExtractor(object):
     def isLongUrl(self):
         '''
         determines whether website's length is too long
-         '''
+        '''
 
         length = len(self.url)
         if length<54:
@@ -136,7 +136,7 @@ class fExtractor(object):
     def isTinyUrl(self):
         '''
         determines whether websit's length is too small
-         '''
+        '''
 
 
         try:
@@ -156,7 +156,7 @@ class fExtractor(object):
     def domainExpiry(self):
         '''
         determines whether website is experied for more than a year
-         '''
+        '''
 
         try:
             lookup = self.whois
@@ -171,7 +171,7 @@ class fExtractor(object):
     def isSFHSuspicious(self):
         '''
         determines whether about of website has nothing
-         '''
+        '''
 
         scripts = self.scripts
 
@@ -186,7 +186,7 @@ class fExtractor(object):
     def extract(self,argument):
         '''
         Creates list of all values
-         '''
+        '''
 
         result =[self.has_IPAdress(), self.isLongUrl(), self.isTinyUrl(),\
         self.isRedirectingUrl(), self.domainExpiry(),\
@@ -200,7 +200,7 @@ class fExtractor(object):
     def inputtomodel(self):
         '''
         Creates list to be used by model
-         '''
+        '''
 
         im =[self.has_IPAdress(), self.isLongUrl(), self.isTinyUrl(),\
         self.isRedirectingUrl(), self.domainExpiry(),\
@@ -211,9 +211,9 @@ class fExtractor(object):
 
 
 def dummy_set():
-'''
-Using bayes algorithm,a model isbeing made to predict values of label after pushing some predefined data set
-'''
+        '''
+        Using bayes algorithm,a model isbeing made to predict values of label after pushing some predefined data set
+        '''
 
 
         result = []
@@ -262,6 +262,24 @@ def main_model(new_url):
 
         res = fExtractor(new_url).inputtomodel()
         return res
+
+import csv
+def malwareinfo():
+
+        url = 'http://data.phishtank.com/data/online-valid.csv'
+        response = urllib2.urlopen(url)
+        cr = csv.reader(response)
+        for row in cr:
+
+                url = row[1]
+                if redis_db.get('url'):
+                        pass
+                redis_db.set(url,1)
+
+
+
+
+
 
 
 
