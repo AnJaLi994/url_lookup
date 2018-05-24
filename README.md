@@ -6,13 +6,13 @@ The GET requests would look like this:
 
   GET /urlinfo/1/{url}/
 FLOWCHART:
-
+![alt tag](https://github.com/AnJaLi994/url_lookup/blob/master/Untitled%20Diagram.jpg "FLOWCHART")
  
-User initiates request by sending url
-Proxy intercepts request, and forwards to Loadbalancer(nginx)
-loadbalancer distributes traffic to web-services
-Web service looks for URL in malware database(redis-cache)
-if not found ,Web service predicts it using bayes algorithm.
-Web service provides response to proxy
+1.User initiates request by sending url
+2.Proxy intercepts request, and forwards to Loadbalancer(nginx)
+3.loadbalancer distributes traffic to web-services
+4.Web service looks for URL in malware database(redis-cache)
+5. if not found ,Web service predicts it using bayes algorithm.
+6. Web service provides response to proxy
 in parallel,Also stores into db if it is a malware.
-Based on response, proxy can pass or block website
+7.Based on response, proxy can pass or block website
