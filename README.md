@@ -3,7 +3,7 @@ Detection of phishing website
 url_lookup is an HTTP webservice that is scanning traffic looking for malware URL's. Before allowing HTTP connections to be made, this proxy asks a service(main_model) that maintains several databases of malware URL's if the resource being requested is known to contain malware.
 
 The POST requests would look like this:GET /urlinfo/1/
-{"url" : "www.testing.com"
+BODY : {"url" : "www.testing.com" }
 
 
 FLOWCHART:
@@ -48,5 +48,6 @@ to start services.Supervisor is responsible for starting, managing and re-starti
 FUTURE SCOPE:
 --------------
   1.Multiple Instances can be used to ensure seamless read/write .
+  
   2.Currently the ports 9000 and 9001 is running on the same system,Later on this can be scaled up by Horizontal Scaling ,Adding Multiple systems and Configuring Nginx with required update.
 
