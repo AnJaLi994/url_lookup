@@ -1,7 +1,7 @@
 import redis
 from flask import Flask, jsonify, request
 
-from test_panda import main_model, dummy_set,malwareinfo
+from url_classifier import main_model, dummy_set,malwareinfo
 
 app = Flask(__name__)
 redis_db = redis.StrictRedis(host="localhost", port=6379, db=0)
