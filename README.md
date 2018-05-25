@@ -16,9 +16,9 @@ FLOWCHART:
 
 4.Web service looks for URL in malware database(redis-cache)
 
-5. If not found ,Web service predicts it using bayes algorithm.
+5.If not found ,Web service predicts it using bayes algorithm.
 
-6. In parallel,malwareinfo() function will be called to update db with phishing urls
+6.In parallel,malwareinfo() function will be called to update db with phishing urls
 in regular interval.
 --------------------------------------------------------------------------------------------------------------------------------------
 Getting Started:
@@ -27,7 +27,7 @@ Getting Started:
   
   
   2.Use curl command to test the service .
-    curl should be in format of  curl -i -X POST -H "Content-Type: application/json" -d "{\"url\":\"https://slack.com\"}"http://localhost:80/GET/URLINFO/1
+    curl should be in format of  curl -i -X POST -H "Content-Type: application/json" -d "{\"url\":\"https://slack.com\"}" http://localhost:80/GET/URLINFO/1
   
   3. Superviser is responsible for starting, managing and re-starting programs using a configuration file.
   
