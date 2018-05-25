@@ -9,10 +9,27 @@ FLOWCHART:
 ![alt tag](https://github.com/AnJaLi994/url_lookup/blob/master/Untitled%20Diagram.jpg  "FLOWCHART")
  
 1.User initiates request by sending url
+
 2.Proxy intercepts request, and forwards to Loadbalancer(nginx)
+
 3.loadbalancer distributes traffic to web-services
+
 4.Web service looks for URL in malware database(redis-cache)
+
 5. if not found ,Web service predicts it using bayes algorithm.
-6. Web service provides response to proxy
-in parallel,Also stores into db if it is a malware.
-7.Based on response, proxy can pass or block website
+
+6. In parallel,malwareinfo() function will be called to update db with phishing urls
+in regular interval.
+--------------------------------------------------------------------------------------------------------------------------------------
+Getting Started:
+  1.use python flask_api.py to start the service:
+  2.use curl command to test the service 
+    curl should be in format of  curl -i -X POST -H "Content-Type: application/json" -d "{\"url\":\"https://slack.com\"}"          http://localhost:80/GET/URLINFO/1
+  
+  3. superviser is responsible for starting, managing and re-starting programs using a configuration file.
+  4. as soon as we send curl command,nginx which is listening on default port,redirects the request to 9000 and 9001,algorithm used is least connection.
+  5.default redis port on which it is listening is 6379
+  5.simultaneously,randominfo() is running in background,it's main function is to update db with new urls in every one hour.The source used is "Phishtank"details here:(https://www.phishtank.com/)
+FUTURE SCOPE:
+  Sharding can be used to ensure seamless read/write .
+  
