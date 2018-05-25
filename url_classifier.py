@@ -263,18 +263,26 @@ def main_model(new_url):
         res = fExtractor(new_url).inputtomodel()
         return res
 
+import time
 import csv
 def malwareinfo():
 
-        url = 'http://data.phishtank.com/data/online-valid.csv'
-        response = urllib2.urlopen(url)
-        cr = csv.reader(response)
-        for row in cr:
-
-                url = row[1]
-                if redis_db.get('url'):
-                        pass
-                redis_db.set(url,1)
+	url = 'http://data.phishtank.com/data/online-valid.csv'
+	response = urllib2.urlopen(url)
+	cr = csv.reader(response)
+	while True:
+    		c= 0
+    		last_scan = redis_db.get("last_scan_time")
+    		last_scan_updated = None
+    		for row in cr:
+        		if c == 0:
+            			last_scan_updated = row[4]
+            			redis_db.set("last_scan_time", last_scan_updated)
+            			c += 1
+        		redis_db.set(row[1], "1")
+        		if last_scan == row[4]:
+            			break
+    		time.sleep(3600)
 
 
 
