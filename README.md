@@ -6,7 +6,7 @@ The GET requests would look like this:
 
   GET /urlinfo/1/{url}/
 FLOWCHART:
-![alt tag](https://github.com/AnJaLi994/url_lookup/blob/master/Untitled%20Diagram.jpg "FLOWCHART")
+![alt tag](https://github.com/AnJaLi994/url_lookup/blob/master/Untitled%20Diagram.jpg  "FLOWCHART")
  
 1.User initiates request by sending url
 2.Proxy intercepts request, and forwards to Loadbalancer(nginx)
